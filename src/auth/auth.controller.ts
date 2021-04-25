@@ -17,7 +17,7 @@ export class AuthController {
     }
 
     @ApiOperation({ summary: 'Registration' })
-    // @ApiResponse({ status: 200, type: { token: string } })
+    @ApiResponse({ status: 200 })
     @Post('/registration')
     registration(@Body() userDto: CreateUserDto) {
         return this.authService.registration(userDto)
