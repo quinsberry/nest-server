@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/sequelize'
 import { User } from './users.model'
 import { CreateUserDto } from './dto/create-user.dto'
 import { RolesService } from '../roles/roles.service'
-import { addRoleDto } from './dto/add-role.dto'
-import { banUserDto } from './dto/ban-user.dto'
+import { AddRoleDto } from './dto/add-role.dto'
+import { BanUserDto } from './dto/ban-user.dto'
 
 @Injectable()
 export class UsersService {
@@ -28,7 +28,7 @@ export class UsersService {
         return await this.userRepository.findOne({ where: { email }, include: { all: true } })
     }
 
-    async addRole(dto: addRoleDto) {
+    async addRole(dto: AddRoleDto) {
         const user = await this.userRepository.findByPk(dto.userId)
         const role = await this.rolesService.getRoleByValue(dto.value)
 
@@ -40,7 +40,7 @@ export class UsersService {
         return dto
     }
 
-    async ban(dto: banUserDto) {
+    async ban(dto: BanUserDto) {
         const user = await this.userRepository.findByPk(dto.userId)
 
         if (!user) {

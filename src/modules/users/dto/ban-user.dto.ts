@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNumber, IsString } from 'class-validator'
 
-export class banUserDto {
+export class BanUserDto {
     @ApiProperty({ example: 1, description: 'Unique user identifier' })
     @IsNumber({}, { message: 'Should be a number' })
     readonly userId: number

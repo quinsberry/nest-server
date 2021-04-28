@@ -5,8 +5,8 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { User } from './users.model'
 import { Roles } from '../../decorators/roles.decorator'
 import { RolesGuard } from '../../guards/roles.guard'
-import { addRoleDto } from './dto/add-role.dto'
-import { banUserDto } from './dto/ban-user.dto'
+import { AddRoleDto } from './dto/add-role.dto'
+import { BanUserDto } from './dto/ban-user.dto'
 import { ValidationPipe } from '../../pipes/validation.pipe'
 
 @ApiTags('Users')
@@ -35,7 +35,7 @@ export class UsersController {
     @UseGuards(RolesGuard)
     @UsePipes(ValidationPipe)
     @Post('/role')
-    addRole(@Body() dto: addRoleDto) {
+    addRole(@Body() dto: AddRoleDto) {
         return this.usersService.addRole(dto)
     }
 
@@ -45,7 +45,7 @@ export class UsersController {
     @UseGuards(RolesGuard)
     @UsePipes(ValidationPipe)
     @Post('/ban')
-    ban(@Body() dto: banUserDto) {
+    ban(@Body() dto: BanUserDto) {
         return this.usersService.ban(dto)
     }
 }
